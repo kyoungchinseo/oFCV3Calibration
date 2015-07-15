@@ -2,6 +2,7 @@
 #include "ofApp.h"
 
 #include "ofTestAppWebCamInput.h"
+#include "ofTestAppCalibSingle.h"
 
 //========================================================================
 int main( ){
@@ -12,7 +13,11 @@ int main( ){
 	// pass in width and height too:
 	//ofRunApp(new ofApp());
 	
-	ofRunApp(new ofTestAppWebCamInput());
+	// test for webcam class
+	//ofRunApp(new ofTestAppWebCamInput());
+
+	// test for single camera calibration
+	ofRunApp(new ofTestAppCalibSingle());
 
 
 }

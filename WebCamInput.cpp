@@ -5,7 +5,6 @@ WebCamInput::WebCamInput(void)
 {
 }
 
-
 WebCamInput::~WebCamInput(void)
 {
 }
@@ -27,9 +26,6 @@ void WebCamInput::initCamera(int camera_width, int camera_height)
 void WebCamInput::updateFrame(void)
 {
 	vidGrabber.update();
-
-
-
 }
 
 
