@@ -13,9 +13,7 @@ using namespace cv;
 using namespace std;
 
 
-
-
-class ofApp : public ofBaseApp{
+class ofTestAppWebCamInput : public ofBaseApp{
 
 	public:
 		void setup();
@@ -32,10 +30,12 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
-		void testopenCV3module(void);
-
 		Mat					image;
 		ofxCvColorImage		ofxImage;
 		ofVideoGrabber 		vidGrabber;
+
+		WebCamInput			camera;
+
 		
 };
+
