@@ -13,18 +13,21 @@ class WebCamInput
 public:
 	WebCamInput(void);
 	~WebCamInput(void);
-	void initCamera(void);
+	void initCamera(int camera_width, int camera_height);
 	void updateFrame(void);
 	void drawFrame(int x, int y, int w, int h);
 	void drawFrame(int x, int y);
-	Mat getCurrentFrame();
-	ofxCvColorImage getCurrentColorFrame();
+	Mat					getCurrentFrame();
+	ofxCvColorImage		getCurrentColorFrame();
 	ofxCvGrayscaleImage getCurrentGrayFrame();
-	int getVideoHeight();
-	int getVideoWidth();
+	int					getVideoHeight();
+	int					getVideoWidth();
 private:
 	ofVideoGrabber 		vidGrabber;
 	Mat					ocvImage;
 	ofxCvColorImage		ofxColorImage;
+
+	int					width;
+	int					height;
 };
 

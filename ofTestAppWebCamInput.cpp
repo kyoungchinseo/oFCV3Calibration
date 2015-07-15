@@ -3,7 +3,10 @@
 
 //--------------------------------------------------------------
 void ofTestAppWebCamInput::setup(){
-	camera.initCamera();
+	camera.initCamera(640,480);
+
+	ofxImageConverted.allocate(640,480);
+
 }
 
 //--------------------------------------------------------------
@@ -13,8 +16,17 @@ void ofTestAppWebCamInput::update(){
 
 //--------------------------------------------------------------
 void ofTestAppWebCamInput::draw(){
-	camera.drawFrame(0,0);
-	camera.drawFrame(640,0,320,240);
+	//camera.drawFrame(0,0);
+	camera.drawFrame(0,0,320,240);
+
+	ofxImage = camera.getCurrentColorFrame();
+	ofxImage.draw(320,0,320,240);
+
+	image = camera.getCurrentFrame();
+	//cout << image.rows << " " << image.cols << endl;
+
+	ofxImageConverted.setFromPixels(image.data,image.cols, image.rows);
+	ofxImageConverted.draw(0,240,320,240);
 }
 
 //--------------------------------------------------------------

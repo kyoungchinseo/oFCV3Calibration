@@ -32,6 +32,7 @@ class ofTestAppWebCamInput : public ofBaseApp{
 
 		Mat					image;
 		ofxCvColorImage		ofxImage;
+		ofxCvColorImage     ofxImageConverted;
 		ofVideoGrabber 		vidGrabber;
 
 		WebCamInput			camera;
