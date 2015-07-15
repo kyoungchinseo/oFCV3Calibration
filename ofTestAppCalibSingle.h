@@ -6,8 +6,7 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <iostream>
 
-#include "WebCamInput.h"
-
+#include "CalibSingleManager.h"
 
 using namespace cv;
 using namespace std;
@@ -29,14 +28,6 @@ class ofTestAppCalibSingle : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
-
-		Mat					image;
-		ofxCvColorImage		ofxImage;
-		ofxCvColorImage     ofxImageConverted;
-		ofVideoGrabber 		vidGrabber;
-
-		WebCamInput			camera;
-
 		
 };
 
