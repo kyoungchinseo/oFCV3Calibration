@@ -29,5 +29,6 @@ class ofTestAppCalibSingle : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 		
+		CalibSingleManager *calibManager;
 };
 

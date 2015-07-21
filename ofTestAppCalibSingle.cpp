@@ -3,6 +3,8 @@
 
 //--------------------------------------------------------------
 void ofTestAppCalibSingle::setup(){
+	calibManager = new CalibSingleManager();
+	
 
 }
 
