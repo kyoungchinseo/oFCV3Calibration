@@ -14,10 +14,10 @@ int main( ){
 	//ofRunApp(new ofApp());
 	
 	// test for webcam class
-	//ofRunApp(new ofTestAppWebCamInput());
+	ofRunApp(new ofTestAppWebCamInput());
 
 	// test for single camera calibration
-	ofRunApp(new ofTestAppCalibSingle());
+	//ofRunApp(new ofTestAppCalibSingle());
 
 
 }

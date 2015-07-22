@@ -6,7 +6,6 @@ void ofTestAppWebCamInput::setup(){
 	camera.initCamera(640,480);
 
 	ofxImageConverted.allocate(640,480);
-
 }
 
 //--------------------------------------------------------------
@@ -25,7 +24,7 @@ void ofTestAppWebCamInput::draw(){
 	image = camera.getCurrentFrame();
 	//cout << image.rows << " " << image.cols << endl;
 
-	ofxImageConverted.setFromPixels(image.data,image.cols, image.rows);
+	ofxImageConverted.setFromPixels(image->data,image->cols, image->rows);
 	ofxImageConverted.draw(0,240,320,240);
 }
 

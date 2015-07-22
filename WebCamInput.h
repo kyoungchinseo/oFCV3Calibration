@@ -17,14 +17,14 @@ public:
 	void updateFrame(void);
 	void drawFrame(int x, int y, int w, int h);
 	void drawFrame(int x, int y);
-	Mat					getCurrentFrame();
+	Mat	*				getCurrentFrame();
 	ofxCvColorImage		getCurrentColorFrame();
 	ofxCvGrayscaleImage getCurrentGrayFrame();
 	int					getVideoHeight();
 	int					getVideoWidth();
 private:
 	ofVideoGrabber 		vidGrabber;
-	Mat					ocvImage;
+	Mat					*ocvImage;
 	ofxCvColorImage		ofxColorImage;
 
 	int					width;

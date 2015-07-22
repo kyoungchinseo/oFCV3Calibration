@@ -3,19 +3,21 @@
 
 //--------------------------------------------------------------
 void ofTestAppCalibSingle::setup(){
+
 	calibManager = new CalibSingleManager();
-	
+	calibManager->init();
 
 }
 
 //--------------------------------------------------------------
 void ofTestAppCalibSingle::update(){
+	calibManager->update();
 
 }
 
 //--------------------------------------------------------------
 void ofTestAppCalibSingle::draw(){
-
+	calibManager->draw();
 }
 
 //--------------------------------------------------------------
@@ -40,12 +42,12 @@ void ofTestAppCalibSingle::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofTestAppCalibSingle::mousePressed(int x, int y, int button){
-
+	
 }
 
 //--------------------------------------------------------------
 void ofTestAppCalibSingle::mouseReleased(int x, int y, int button){
-
+	calibManager->bFindGrid = true;
 }
 
 //--------------------------------------------------------------

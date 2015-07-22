@@ -30,7 +30,7 @@ class ofTestAppWebCamInput : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
-		Mat					image;
+		Mat					*image;
 		ofxCvColorImage		ofxImage;
 		ofxCvColorImage     ofxImageConverted;
 		ofVideoGrabber 		vidGrabber;
