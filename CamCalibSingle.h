@@ -19,6 +19,11 @@ public:
 	void findGridPattern(Mat* srcImage, Mat *destImage);
 	void calibrateCamera(void);
 public:
-	
+	int numOfCornersHorz;
+	int numOfCornersVert;
+	cv::Size boardSize;
+
+	vector<Point2f> corners;
+
 };
 

@@ -47,16 +47,15 @@ void CalibSingleManager::draw()
 
 void CalibSingleManager::findChessboardCorners(void)
 {
-	Mat *destImage = new Mat(480,640,CV_8UC3);
-	
+	//Mat *destImage = new Mat(480,640,CV_8UC3);
+	Mat *destImage = new Mat(480,640,CV_8UC1);
 	Mat *srcImage = camInput->getCurrentFrame();
 	calibSingle->findGridPattern(srcImage, destImage);
 	
-
-	cout << "try to find: " << srcImage->rows << ":" << srcImage->cols << endl;;
 	//camInput->getCurrentFrame();
 	
 	//image.allocate(640,480);
+	//image.setFromPixels(srcImage->data,srcImage->cols, srcImage->rows);
 	image.setFromPixels(destImage->data,destImage->cols, destImage->rows);
 	//image.setFromPixels(srcImage->data, 480, 640);
 	//image.draw(0,240,320,240);

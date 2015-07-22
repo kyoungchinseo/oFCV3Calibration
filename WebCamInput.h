@@ -24,7 +24,7 @@ public:
 	int					getVideoWidth();
 private:
 	ofVideoGrabber 		vidGrabber;
-	Mat					*ocvImage;
+	Mat					ocvImage;
 	ofxCvColorImage		ofxColorImage;
 
 	int					width;

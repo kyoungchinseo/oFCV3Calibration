@@ -18,8 +18,7 @@ void WebCamInput::initCamera(int camera_width, int camera_height)
 	width = vidGrabber.width;
 	height= vidGrabber.height;
 
-	//ocvImage.create(height,width,CV_8UC3);
-	ocvImage = new Mat(height,width,CV_8UC3);
+	ocvImage.create(height,width,CV_8UC3);
 
 	ofxColorImage.allocate(width, height);
 }
@@ -46,9 +45,9 @@ void WebCamInput::drawFrame(int x, int y)
 Mat* WebCamInput::getCurrentFrame()
 {
 	if (vidGrabber.isFrameNew()){
-		ocvImage->data = vidGrabber.getPixels();
+		ocvImage.data = vidGrabber.getPixels();
 	}
-	return ocvImage;
+	return &ocvImage;
 }
 
 ofxCvColorImage WebCamInput::getCurrentColorFrame()
