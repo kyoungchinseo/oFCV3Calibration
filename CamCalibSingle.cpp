@@ -13,11 +13,11 @@ CamCalibSingle::~CamCalibSingle(void)
 void CamCalibSingle::findGridPattern(Mat* srcImage ,Mat* destImage)
 {
 	Mat grayImage;
-	Mat inputImage(srcImage->rows,srcImage->cols, CV_8UC3,srcImage->data);
+	Mat inputImage(srcImage->rows,srcImage->cols, CV_8UC3, srcImage->data);
 	//IplImage *gSrcImage = cvCreateImage(cvGetSize(srcImage),IPL_DEPTH_8U, 1);
 	cvtColor(inputImage, grayImage, CV_BGR2GRAY);
 
-	cout << srcImage->rows << ":" << grayImage.rows << endl;
+	cout << "Inside:  " << srcImage->rows << ":" << grayImage.rows << endl;
 
 	//CvPoint2D32f *cornerPoints = new CvPoint2D32f[1000];  // 1000?
 	//int corner_count = 0;
@@ -33,8 +33,13 @@ void CamCalibSingle::findGridPattern(Mat* srcImage ,Mat* destImage)
 
 	//delete [] cornerPoints;
 
-	destImage = new Mat(srcImage->rows,srcImage->cols,CV_8SC3,srcImage->data);
-	
+	destImage = new Mat(srcImage->rows,srcImage->cols,CV_8SC3,inputImage.data);
+	//destImage = &inputImage;
 
+
+	cv::namedWindow( "Display window", WINDOW_AUTOSIZE ); // Create a window for display.
+	cv::imshow( "Display window", grayImage); // Show our image inside i
+	destImage = &grayImage;
+	
 	//return destImage;
 }

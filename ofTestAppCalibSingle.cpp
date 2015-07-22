@@ -42,12 +42,12 @@ void ofTestAppCalibSingle::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofTestAppCalibSingle::mousePressed(int x, int y, int button){
-	
+	calibManager->bFindGrid = true;
 }
 
 //--------------------------------------------------------------
 void ofTestAppCalibSingle::mouseReleased(int x, int y, int button){
-	calibManager->bFindGrid = true;
+	
 }
 
 //--------------------------------------------------------------

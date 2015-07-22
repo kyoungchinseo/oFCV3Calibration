@@ -22,7 +22,8 @@ void CalibSingleManager::init()
 
 	camInput->initCamera(640,480);
 
-	
+	image.allocate(640,480);
+
 	bFindGrid = false;
 }
 
@@ -39,21 +40,27 @@ void CalibSingleManager::draw()
 {
 	camInput->drawFrame(0,0,320,240);
 	if (bFindGrid) {
-		
+		image.draw(0,240,320,240);
 	}
 
 }
 
 void CalibSingleManager::findChessboardCorners(void)
 {
-	Mat *destImage = new Mat();
-	calibSingle->findGridPattern(camInput->getCurrentFrame()	, destImage);
+	Mat *destImage = new Mat(480,640,CV_8UC3);
+	
+	Mat *srcImage = camInput->getCurrentFrame();
+	calibSingle->findGridPattern(srcImage, destImage);
+	
 
-	cout << "try to find: " << endl;
+	cout << "try to find: " << srcImage->rows << ":" << srcImage->cols << endl;;
 	//camInput->getCurrentFrame();
-	ofxCvColorImage image;
+	
+	//image.allocate(640,480);
 	image.setFromPixels(destImage->data,destImage->cols, destImage->rows);
-	image.draw(0,240,320,240);
+	//image.setFromPixels(srcImage->data, 480, 640);
+	//image.draw(0,240,320,240);
 
-	bFindGrid = false;
+
+	//bFindGrid = false;
 }

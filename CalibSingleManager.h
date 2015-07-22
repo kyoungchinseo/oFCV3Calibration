@@ -1,5 +1,6 @@
 #pragma once
 
+#include "ofxOpenCv.h"
 #include "WebCamInput.h"
 #include "CamCalibSingle.h"
 
@@ -23,7 +24,7 @@ public:
 	WebCamInput *camInput;
 	CamCalibSingle *calibSingle;
 
-
+	ofxCvColorImage image;
 	bool bFindGrid;
 };
 
