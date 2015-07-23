@@ -1,10 +1,10 @@
 #include "CamCalibSingle.h"
 
 
-CamCalibSingle::CamCalibSingle(void)
+CamCalibSingle::CamCalibSingle(int num_of_corners_horz, int num_of_corners_vert)
 {
-	numOfCornersHorz = 10;
-	numOfCornersVert = 7;
+	numOfCornersHorz = num_of_corners_horz;
+	numOfCornersVert = num_of_corners_vert;
 	boardSize = cv::Size(numOfCornersHorz, numOfCornersVert);
 
 	corners.clear();
@@ -33,3 +33,9 @@ void CamCalibSingle::findGridPattern(Mat* srcImage ,Mat* destImage)
 	//cv::namedWindow( "Display window", WINDOW_AUTOSIZE ); // Create a window for display.
 	//cv::imshow( "Display window", grayImage); // Show our image inside i
 }
+
+void CamCalibSingle::loadParameters()
+{
+
+}
+

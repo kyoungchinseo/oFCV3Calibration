@@ -12,7 +12,7 @@ using namespace std;
 class CamCalibSingle
 {
 public:
-	CamCalibSingle(void);
+	CamCalibSingle(int num_of_corners_horz, int num_of_corners_vert);
 	~CamCalibSingle(void);
 
 	void loadParameters(void);

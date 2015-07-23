@@ -7,7 +7,7 @@
 class CalibSingleManager
 {
 public:
-	CalibSingleManager(void);
+	CalibSingleManager(int imageWidth, int imageHeight);
 	~CalibSingleManager(void);
 
 	// process (change the name)
@@ -21,10 +21,14 @@ public:
 	//void showResult();
 
 public:
+	int width;
+	int height;
+
 	WebCamInput *camInput;
 	CamCalibSingle *calibSingle;
 
 	ofxCvColorImage image;
 	bool bFindGrid;
+
 };
 

@@ -4,7 +4,7 @@
 //--------------------------------------------------------------
 void ofTestAppCalibSingle::setup(){
 
-	calibManager = new CalibSingleManager();
+	calibManager = new CalibSingleManager(640,480);
 	calibManager->init();
 
 }

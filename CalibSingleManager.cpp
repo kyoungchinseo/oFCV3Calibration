@@ -1,8 +1,10 @@
 #include "CalibSingleManager.h"
 
 
-CalibSingleManager::CalibSingleManager(void)
+CalibSingleManager::CalibSingleManager(int imageWidth, int imageHeight)
 {
+	width = imageWidth;
+	height= imageHeight;
 }
 
 
@@ -16,15 +18,16 @@ void CalibSingleManager::init()
 	camInput = new WebCamInput();
 
 	// calibration algorithm
-	calibSingle = new CamCalibSingle();
+	calibSingle = new CamCalibSingle(10,7);
 
 	// parameters initialize
 
-	camInput->initCamera(640,480);
+	camInput->initCamera(width,height);
 
-	image.allocate(640,480);
+	image.allocate(width,height);
 
 	bFindGrid = false;
+
 }
 
 void CalibSingleManager::update()
@@ -38,17 +41,16 @@ void CalibSingleManager::update()
 
 void CalibSingleManager::draw()
 {
-	camInput->drawFrame(0,0,320,240);
+	camInput->drawFrame(0,0,width,height);
 	if (bFindGrid) {
-		image.draw(0,240,320,240);
+		image.draw(width,0,width,height);
 	}
 
 }
 
 void CalibSingleManager::findChessboardCorners(void)
 {
-	//Mat *destImage = new Mat(480,640,CV_8UC3);
-	Mat *destImage = new Mat(480,640,CV_8UC1);
+	Mat *destImage = new Mat(height,width,CV_8UC3);
 	Mat *srcImage = camInput->getCurrentFrame();
 	calibSingle->findGridPattern(srcImage, destImage);
 	
