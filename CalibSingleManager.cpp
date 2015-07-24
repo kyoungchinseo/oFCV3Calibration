@@ -42,9 +42,11 @@ void CalibSingleManager::update()
 
 void CalibSingleManager::draw()
 {
-	camInput->drawFrame(0,0,width,height);
+	
 	if (bFindGrid) {
-		image.draw(width,0,width,height);
+		image.draw(0,0,width,height);
+	} else {
+		camInput->drawFrame(0,0,width,height);
 	}
 
 }
@@ -67,10 +69,12 @@ void CalibSingleManager::recordCurrentCorners(void)
 
 void CalibSingleManager::startFindCorners(void)
 {
-	bFindGrid = true;
+	bFindGrid = !bFindGrid;
 }
 
 void CalibSingleManager::calibateCamera(void)
 {
 	calibSingle->calibrateCamera();
+
+	bFindGrid = false;
 }

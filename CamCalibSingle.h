@@ -19,6 +19,7 @@ public:
 	bool findGridPattern(Mat* srcImage, Mat *destImage, bool record);
 	void generateObjectPoints(void);
 	void calibrateCamera(void);
+	void showResultMatrix(void);
 public:
 	int numOfCornersHorz;
 	int numOfCornersVert;
@@ -32,8 +33,8 @@ public:
 
 	vector<vector<Point3f>> objectPoints;
 
-	Mat cameraMatrix;
-	Mat distCoeffs;
+	Mat intrinsicMatrix;
+	Mat distortionMatrix;
 	vector<Mat> rvecs;
 	vector<Mat> tvecs;
 	vector<float> repojectionError;

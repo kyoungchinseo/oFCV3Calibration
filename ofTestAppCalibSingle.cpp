@@ -32,11 +32,14 @@ void ofTestAppCalibSingle::keyReleased(int key){
 	case 's':
 		calibManager->startFindCorners();
 		break;
-	case 'r':
+	case 'r': // record one set of corners
 		calibManager->recordCurrentCorners();
 		break;
-	case 'c':
+	case 'c': // calibrate process
 		calibManager->calibateCamera();
+		break;
+	case 'v': // save the result
+
 		break;
 	}
 }

@@ -9,8 +9,8 @@ CamCalibSingle::CamCalibSingle(int imgWidth, int imgHeight, int num_of_corners_h
 	boardSize = cv::Size(numOfCornersHorz, numOfCornersVert);
 	imageSize = cv::Size(imgWidth, imgHeight);
 
-	cameraMatrix = Mat::eye(3,3,CV_64F);
-	distCoeffs = Mat::zeros(8,1,CV_64F);
+	intrinsicMatrix = Mat::eye(3,3,CV_64F);
+	distortionMatrix = Mat::zeros(8,1,CV_64F);
 	
 
 	corners.clear();
@@ -42,9 +42,6 @@ bool CamCalibSingle::findGridPattern(Mat* srcImage ,Mat* destImage, bool record)
 			return true;
 		}
 	}
-	
-	//cv::namedWindow( "Display window", WINDOW_AUTOSIZE ); // Create a window for display.
-	//cv::imshow( "Display window", grayImage); // Show our image inside i
 
 	return false;
 }
@@ -58,11 +55,12 @@ void CamCalibSingle::calibrateCamera()
 {
 	generateObjectPoints();
 
-
 	double rms = cv::calibrateCamera(objectPoints, imagePoints, imageSize, 
-		cameraMatrix, distCoeffs, rvecs, tvecs, CV_CALIB_FIX_K4 | CV_CALIB_FIX_K5);
+		intrinsicMatrix, distortionMatrix, rvecs, tvecs, CV_CALIB_FIX_K4 | CV_CALIB_FIX_K5);
 
 	cout << "calibration finished: " << rms <<  endl;
+
+	showResultMatrix();
 }
 
 void CamCalibSingle::generateObjectPoints(void) 
@@ -79,4 +77,14 @@ void CamCalibSingle::generateObjectPoints(void)
 	for(int i=0;i<imagePoints.size();i++) {
 		objectPoints.push_back(objectCorners);
 	}
+
+
+}
+
+void CamCalibSingle::showResultMatrix(void) {
+	cout << "Camera Intrinsic Matrix: " << endl;
+	cout << intrinsicMatrix << endl;
+
+	cout << "Lens Distortion Matrix" << endl;
+	cout << distortionMatrix << endl;
 }
