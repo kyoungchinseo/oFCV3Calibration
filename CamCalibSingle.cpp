@@ -1,21 +1,27 @@
 #include "CamCalibSingle.h"
 
 
-CamCalibSingle::CamCalibSingle(int num_of_corners_horz, int num_of_corners_vert)
+CamCalibSingle::CamCalibSingle(int imgWidth, int imgHeight, int num_of_corners_horz, int num_of_corners_vert, float square_size)
 {
 	numOfCornersHorz = num_of_corners_horz;
 	numOfCornersVert = num_of_corners_vert;
+	squareSize = square_size;
 	boardSize = cv::Size(numOfCornersHorz, numOfCornersVert);
+	imageSize = cv::Size(imgWidth, imgHeight);
+
+	cameraMatrix = Mat::eye(3,3,CV_64F);
+	distCoeffs = Mat::zeros(8,1,CV_64F);
+	
 
 	corners.clear();
-
+	imagePoints.clear();
 }
 
 CamCalibSingle::~CamCalibSingle(void)
 {
 }
 
-void CamCalibSingle::findGridPattern(Mat* srcImage ,Mat* destImage)
+bool CamCalibSingle::findGridPattern(Mat* srcImage ,Mat* destImage, bool record)
 {
 	Mat grayImage;
 	//Mat inputImage(srcImage->rows,srcImage->cols, CV_8UC3, srcImage->data);
@@ -28,10 +34,19 @@ void CamCalibSingle::findGridPattern(Mat* srcImage ,Mat* destImage)
 		cout << "found corner!" << endl;
 		cornerSubPix(grayImage, corners, cv::Size(5,5), cv::Size(-1,-1),TermCriteria(CV_TERMCRIT_EPS | CV_TERMCRIT_ITER, 30, 0.1));
 		drawChessboardCorners(*(destImage), boardSize, corners, found);
+		if (record) {
+			// record
+			cout << "RECORD: " << corners.at(0).x << ":" << corners.at(0).y << endl;
+			imagePoints.push_back(corners);
+			cout << "=======> " << imagePoints.size() << endl;
+			return true;
+		}
 	}
 	
 	//cv::namedWindow( "Display window", WINDOW_AUTOSIZE ); // Create a window for display.
 	//cv::imshow( "Display window", grayImage); // Show our image inside i
+
+	return false;
 }
 
 void CamCalibSingle::loadParameters()
@@ -39,3 +54,29 @@ void CamCalibSingle::loadParameters()
 
 }
 
+void CamCalibSingle::calibrateCamera()
+{
+	generateObjectPoints();
+
+
+	double rms = cv::calibrateCamera(objectPoints, imagePoints, imageSize, 
+		cameraMatrix, distCoeffs, rvecs, tvecs, CV_CALIB_FIX_K4 | CV_CALIB_FIX_K5);
+
+	cout << "calibration finished: " << rms <<  endl;
+}
+
+void CamCalibSingle::generateObjectPoints(void) 
+{
+	vector <Point3f> objectCorners;
+	objectCorners.clear();
+	for(int i=0;i<boardSize.height;i++) {
+		for(int j=0;j<boardSize.width;j++) {
+			objectCorners.push_back(Point3f(float(j*1), float(i*1),0.0));
+		}
+	}
+
+	objectPoints.clear();
+	for(int i=0;i<imagePoints.size();i++) {
+		objectPoints.push_back(objectCorners);
+	}
+}

@@ -15,7 +15,10 @@ public:
 	void update();
 	void draw();
 
-	void findChessboardCorners(void);
+	void startFindCorners(void);
+	void findChessboardCorners(bool bRecord);
+	void recordCurrentCorners(void);
+	void calibateCamera(void);
 	//void findGridPattern();
 	//void processCalibration();
 	//void showResult();
@@ -29,6 +32,7 @@ public:
 
 	ofxCvColorImage image;
 	bool bFindGrid;
+	bool bRecordCorners;
 
 };
 

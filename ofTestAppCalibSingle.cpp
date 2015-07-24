@@ -22,12 +22,23 @@ void ofTestAppCalibSingle::draw(){
 
 //--------------------------------------------------------------
 void ofTestAppCalibSingle::keyPressed(int key){
+	
 
 }
 
 //--------------------------------------------------------------
 void ofTestAppCalibSingle::keyReleased(int key){
-
+	switch(key) {
+	case 's':
+		calibManager->startFindCorners();
+		break;
+	case 'r':
+		calibManager->recordCurrentCorners();
+		break;
+	case 'c':
+		calibManager->calibateCamera();
+		break;
+	}
 }
 
 //--------------------------------------------------------------

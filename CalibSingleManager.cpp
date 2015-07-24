@@ -18,7 +18,7 @@ void CalibSingleManager::init()
 	camInput = new WebCamInput();
 
 	// calibration algorithm
-	calibSingle = new CamCalibSingle(10,7);
+	calibSingle = new CamCalibSingle(width, height, 10,7,25.0);
 
 	// parameters initialize
 
@@ -28,6 +28,7 @@ void CalibSingleManager::init()
 
 	bFindGrid = false;
 
+	bRecordCorners = false;
 }
 
 void CalibSingleManager::update()
@@ -35,7 +36,7 @@ void CalibSingleManager::update()
 	camInput->updateFrame();
 
 	if (bFindGrid) {
-		findChessboardCorners();
+		findChessboardCorners(bRecordCorners);
 	}
 }
 
@@ -48,20 +49,28 @@ void CalibSingleManager::draw()
 
 }
 
-void CalibSingleManager::findChessboardCorners(void)
+void CalibSingleManager::findChessboardCorners(bool bRecord)
 {
 	Mat *destImage = new Mat(height,width,CV_8UC3);
 	Mat *srcImage = camInput->getCurrentFrame();
-	calibSingle->findGridPattern(srcImage, destImage);
-	
-	//camInput->getCurrentFrame();
-	
-	//image.allocate(640,480);
-	//image.setFromPixels(srcImage->data,srcImage->cols, srcImage->rows);
+
+	if (calibSingle->findGridPattern(srcImage, destImage, bRecord)) { // if one set of corners are successfully recorded
+		bRecordCorners = false; 
+	}
 	image.setFromPixels(destImage->data,destImage->cols, destImage->rows);
-	//image.setFromPixels(srcImage->data, 480, 640);
-	//image.draw(0,240,320,240);
+}
 
+void CalibSingleManager::recordCurrentCorners(void)
+{
+	bRecordCorners = true;
+}
 
-	//bFindGrid = false;
+void CalibSingleManager::startFindCorners(void)
+{
+	bFindGrid = true;
+}
+
+void CalibSingleManager::calibateCamera(void)
+{
+	calibSingle->calibrateCamera();
 }
