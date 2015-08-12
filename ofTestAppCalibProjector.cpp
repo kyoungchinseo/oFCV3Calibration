@@ -4,7 +4,7 @@
 //--------------------------------------------------------------
 void ofTestAppCalibProjector::setup(){
 
-	calibManager = new CalibSingleManager(640,480);
+	calibManager = new ProjectorCalibSingleManager(640,480);
 	calibManager->init();
 
 }

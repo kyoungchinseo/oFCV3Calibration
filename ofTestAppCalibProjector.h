@@ -6,7 +6,7 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <iostream>
 
-#include "CalibSingleManager.h"
+#include "ProjectorCalibSingleManager.h"
 
 using namespace cv;
 using namespace std;
@@ -29,6 +29,6 @@ class ofTestAppCalibProjector : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 		
-		CalibSingleManager *calibManager;
+		ProjectorCalibSingleManager *calibManager;
 };
 

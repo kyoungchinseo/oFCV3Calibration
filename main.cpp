@@ -3,6 +3,7 @@
 
 #include "ofTestAppWebCamInput.h"
 #include "ofTestAppCalibSingle.h"
+#include "ofTestAppCalibProjector.h"
 
 //========================================================================
 int main( ){
@@ -17,7 +18,9 @@ int main( ){
 	//ofRunApp(new ofTestAppWebCamInput());
 
 	// test for single camera calibration
-	ofRunApp(new ofTestAppCalibSingle());
+	//ofRunApp(new ofTestAppCalibSingle());
 
+	//
+	ofRunApp(new ofTestAppCalibProjector());
 
 }
