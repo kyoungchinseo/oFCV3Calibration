@@ -16,6 +16,7 @@ public:
 	~CamCalibSingle(void);
 
 	void loadParameters(void);
+	void saveParameters(void);
 	bool findGridPattern(Mat* srcImage, Mat *destImage, bool record);
 	void generateObjectPoints(void);
 	void calibrateCamera(void);

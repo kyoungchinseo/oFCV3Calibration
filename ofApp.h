@@ -12,9 +12,6 @@
 using namespace cv;
 using namespace std;
 
-
-
-
 class ofApp : public ofBaseApp{
 
 	public:

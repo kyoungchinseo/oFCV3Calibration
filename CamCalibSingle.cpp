@@ -51,6 +51,11 @@ void CamCalibSingle::loadParameters()
 
 }
 
+void CamCalibSingle::saveParameters()
+{
+	
+}
+
 void CamCalibSingle::calibrateCamera()
 {
 	generateObjectPoints();
